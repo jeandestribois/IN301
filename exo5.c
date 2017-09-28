@@ -2,6 +2,19 @@
 #include <stdlib.h>
 
 
+void nombre_premier(int a)
+{
+	for(int i=a-1; i>=2; i--)
+	{
+		if(a%i==0)
+		{
+			printf("%d n'est pas premier, sont plus grand diviseur est %d \n\n",a,i);
+			exit(0);
+		}
+	}
+	printf("%d est nombre premier \n\n",a);
+}
+
 void multegypt(int x, int y)
 {
 	int z=0;
@@ -19,7 +32,7 @@ void multegypt(int x, int y)
 		}
 		printf("=%d x %d +%d \n",x,y,z);
 	}
-	printf("=%d\n",z);
+	printf("=%d\n\n",z);
 }
 
 void conversion(int s)
@@ -29,7 +42,7 @@ void conversion(int s)
 	s=s%3600;
 	m=s/60;
 	s=s%60;
-	printf("%d secondes vaut %d heures, %d minutes et %d secondes \n", s+60*m+3600*h,h,m,s);
+	printf("%d secondes vaut %d heures, %d minutes et %d secondes \n\n", s+60*m+3600*h,h,m,s);
 }
 
 void etoiles(int n)
@@ -51,9 +64,12 @@ int main()
 	int s=8000;
 	int x=156;
 	int y=67;
+	int a=49;
 	etoiles(n);
 	conversion(s);
 	multegypt(x,y);
+	nombre_premier(a);
+	
 	
 	exit(0);
 }
