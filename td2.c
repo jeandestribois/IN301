@@ -1,34 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define N 20
 
-void tableau(int N)
+void decalage(int t[N])
 {
-	int t[N];
-	int p=1;
-	int min;
-	for(int i=0; i<N; i++)
+	T[0]=0;
+	for(int i=0; i<N-1; i++)
 	{
-		t[i]=1;
+		
 	}
-	for(int i=0; i<N; i++)
-	{
-		p=p*t[i];
-	}
-	printf("\nle produit de toute les valeurs du tableau est %d \n",p);
-	min=t[0];
+}
+
+int min_tableau(int t[N])
+{
+	int min=t[0];
 	for(int i=1; i<N; i++)
 	{
 		if(t[i]<min) {min=t[i];}
 	}
-	printf("\nle plus petit élément du tableau est %d \n",min);
-	
+	return min;
+}
+int produit_tableau(int t[N])
+{
+	int p=1;
+	for(int i=0; i<N; i++)
+	{
+		p=p*t[i];
+	}
+	return p;
+}
+void init_tableau(int t[N])
+{
+	for(int i=0; i<N; i++)
+	{
+		t[i]=1;
+	}
 }
 
 void syracuse(int U)
 {
 	int i=0;
 	printf("U%d=%d \n",i,U);
-	while(i<60)
+	while(i<30)
 	{
 		if(U%2==0)
 		{
@@ -124,23 +137,28 @@ void etoiles(int n)
 
 int main()
 {
+	int t[N];
 	int n=10;
 	int s=8000;
 	int x=156;
 	int y=67;
 	int a=49;
 	int nmax=10000;
-	int U=127;
-	int k=5;
-	int j=8;
-	int N=50;
+	int U=32;
+	int produit;
+	int minimum;
 	etoiles(n);
 	conversion(s);
 	multegypt(x,y);
 	nombre_premier(a);
 	nombres_amis(nmax);
 	syracuse(U);
-	tableau(N);
+	init_tableau(t);
+	produit=produit_tableau(t);
+	printf("\nle produit de toute les valeurs du tableau est %d \n",produit);
+	minimum=min_tableau(t);
+	printf("\nle plus petit élément du tableau est %d \n",minimum);
+	decalage(t);
 	
 	exit(0);
 }
