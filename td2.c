@@ -1,11 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void tableau(int N)
+{
+	int t[N];
+	int p=1;
+	int min;
+	for(int i=0; i<N; i++)
+	{
+		t[i]=1;
+	}
+	for(int i=0; i<N; i++)
+	{
+		p=p*t[i];
+	}
+	printf("\nle produit de toute les valeurs du tableau est %d \n",p);
+	min=t[0];
+	for(int i=1; i<N; i++)
+	{
+		if(t[i]<min) {min=t[i];}
+	}
+	printf("\nle plus petit élément du tableau est %d \n",min);
+	
+}
+
 void syracuse(int U)
 {
 	int i=0;
 	printf("U%d=%d \n",i,U);
-	while(i<100)
+	while(i<60)
 	{
 		if(U%2==0)
 		{
@@ -108,12 +131,16 @@ int main()
 	int a=49;
 	int nmax=10000;
 	int U=127;
+	int k=5;
+	int j=8;
+	int N=50;
 	etoiles(n);
 	conversion(s);
 	multegypt(x,y);
 	nombre_premier(a);
 	nombres_amis(nmax);
 	syracuse(U);
+	tableau(N);
 	
 	exit(0);
 }
