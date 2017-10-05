@@ -1,6 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void syracuse(int U)
+{
+	int i=0;
+	printf("U%d=%d \n",i,U);
+	while(i<100)
+	{
+		if(U%2==0)
+		{
+			U=U/2;
+		}
+		else
+		{
+			U=3*U+1;
+		}
+		i++;
+		printf("U%d=%d \n",i,U);
+	}
+}
+
 int somme_diviseur(int n)
 {
 	int s=1;
@@ -88,12 +107,13 @@ int main()
 	int y=67;
 	int a=49;
 	int nmax=10000;
+	int U=127;
 	etoiles(n);
 	conversion(s);
 	multegypt(x,y);
 	nombre_premier(a);
 	nombres_amis(nmax);
-	
+	syracuse(U);
 	
 	exit(0);
 }
