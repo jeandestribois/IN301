@@ -1,8 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #define N 20
 
+//STRUCTURES
 
+struct tableau
+{
+	int tab[100];
+	int taille;
+};
+typedef struct tableau TABLEAU;
+
+//FONCTIONS
+
+int alea(int n)
+{
+	return rand()%(n+1);
+}
+
+
+
+int produit_element_TABLEAU(TABLEAU var)
+{
+	int p=1;
+	for(int i=0; i<var.taille; i++)
+	{
+		p=p*var.tab[i]
+	}
+	return p;
+}
+
+void affiche_elements_tableau(TABLEAU var)
+{
+	for(int i=0; i<var.taille; i++)
+	{
+		printf("à l'indice %d le tableau contient %d \n",i,var.tab[i]);
+	}
+}
+
+
+TABLEAU init_struct_TABLEAU(TABLEAU var)
+{
+	var.taille=10;
+	for(int i=0; i<var.taille; i++)
+	{
+		var.tab[i]=alea(20);
+	}
+	return var;
+}
 
 void permute_pointeurs(int* pointeur1, int* pointeur2)
 {
@@ -14,12 +60,12 @@ void permute_pointeurs(int* pointeur1, int* pointeur2)
 
 void taille_tableau()
 {
-	int tab[10];
-	printf("la taille de tab est de %lu octets \n",sizeof(tab));
-	printf("la taille de tab[0] est de %lu octets \n",sizeof(tab[0]));
-	printf("la taille de &tab[0] est de %lu octets \n",sizeof(&tab[0]));
-	printf("la taille de *&tab est de %lu octets \n",sizeof(*&tab));
-	printf("la taille de *&tab[0] est de %lu octets \n\n",sizeof(*&tab[0]));
+	int t[10];
+	printf("la taille de tab est de %lu octets \n",sizeof(t));
+	printf("la taille de tab[0] est de %lu octets \n",sizeof(t[0]));
+	printf("la taille de &tab[0] est de %lu octets \n",sizeof(&t[0]));
+	printf("la taille de *&tab est de %lu octets \n",sizeof(*&t));
+	printf("la taille de *&tab[0] est de %lu octets \n\n",sizeof(*&t[0]));
 }
 
 void taille_types()
@@ -171,6 +217,9 @@ void etoiles(int n)
 
 int main()
 {
+	//pour la fonction aléa
+	srand(time(NULL));
+	
 	//calculs, rappels
 	int etoile=10;
 	int conv=8000;
@@ -206,8 +255,14 @@ int main()
 	printf("pointeur1 = %d \npointeur2 = %d \n\n",pointeur1,pointeur2);
 	
 	//structure, tableaux
-	
-	
+	int prod_elem;
+	int elem_min;
+	printf("la taille de la structure TABLEAU est %lu octets\n\n",sizeof(TABLEAU)); 
+	TABLEAU var;
+	var=init_struct_TABLEAU(var);
+	affiche_elements_TABLEAU(var);
+	prod_elem=produit_element_TABLEAU(var);
+	elem_min=element_minimum_TABLEAU(var);
 	
 	
 	exit(0);
