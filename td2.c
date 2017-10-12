@@ -2,13 +2,47 @@
 #include <stdlib.h>
 #define N 20
 
+
+
+void permute_pointeurs(int* pointeur1, int* pointeur2)
+{
+	int p;
+	p=*pointeur1;
+	*pointeur1=*pointeur2;
+	*pointeur2=p;
+}
+
+void taille_tableau()
+{
+	int tab[10];
+	printf("la taille de tab est de %lu octets \n",sizeof(tab));
+	printf("la taille de tab[0] est de %lu octets \n",sizeof(tab[0]));
+	printf("la taille de &tab[0] est de %lu octets \n",sizeof(&tab[0]));
+	printf("la taille de *&tab est de %lu octets \n",sizeof(*&tab));
+	printf("la taille de *&tab[0] est de %lu octets \n\n",sizeof(*&tab[0]));
+}
+
+void taille_types()
+{
+	printf("la taille d'un char est de %lu octets \n",sizeof(char));
+	printf("la taille d'un int est de %lu octets \n",sizeof(int));
+	printf("la taille d'un double est de %lu octets \n",sizeof(double));
+	printf("la taille d'un char* est de %lu octets \n",sizeof(char*));
+	printf("la taille d'un void* est de %lu octets \n",sizeof(void*));
+	printf("la taille d'un int* est de %lu octets \n",sizeof(int*));
+	printf("la taille d'un double* est de %lu octets \n",sizeof(double*));
+	printf("la taille d'un int** est de %lu octets \n",sizeof(int**));
+	printf("la taille de int[10]  est de %lu octets \n",sizeof(int[10]));
+	printf("la taille de char[7][3] est de %lu octets \n\n",sizeof(int[7][3]));
+}
+
 void decalage(int t[N])
 {
-	T[0]=0;
 	for(int i=0; i<N-1; i++)
 	{
-		
+		t[i+1]=t[i];
 	}
+	t[0]=0;
 }
 
 int min_tableau(int t[N])
@@ -137,28 +171,44 @@ void etoiles(int n)
 
 int main()
 {
-	int t[N];
-	int n=10;
-	int s=8000;
+	//calculs, rappels
+	int etoile=10;
+	int conv=8000;
 	int x=156;
 	int y=67;
-	int a=49;
+	int prem=49;
 	int nmax=10000;
-	int U=32;
+	int syr=32;
+	etoiles(etoile);
+	conversion(conv);
+	multegypt(x,y);
+	nombre_premier(prem);
+	nombres_amis(nmax);
+	syracuse(syr);
+	
+	//tableaux
+	int t[N];
 	int produit;
 	int minimum;
-	etoiles(n);
-	conversion(s);
-	multegypt(x,y);
-	nombre_premier(a);
-	nombres_amis(nmax);
-	syracuse(U);
 	init_tableau(t);
 	produit=produit_tableau(t);
 	printf("\nle produit de toute les valeurs du tableau est %d \n",produit);
 	minimum=min_tableau(t);
-	printf("\nle plus petit élément du tableau est %d \n",minimum);
+	printf("\nle plus petit élément du tableau est %d \n\n",minimum);
 	decalage(t);
+	
+	//pointeur
+	int pointeur1=1;
+	int pointeur2=2;
+	taille_types();
+	taille_tableau();
+	permute_pointeurs(&pointeur1, &pointeur2);
+	printf("pointeur1 = %d \npointeur2 = %d \n\n",pointeur1,pointeur2);
+	
+	//structure, tableaux
+	
+	
+	
 	
 	exit(0);
 }
