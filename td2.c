@@ -26,12 +26,12 @@ int produit_element_TABLEAU(TABLEAU var)
 	int p=1;
 	for(int i=0; i<var.taille; i++)
 	{
-		p=p*var.tab[i]
+		p=p*var.tab[i];
 	}
 	return p;
 }
 
-void affiche_elements_tableau(TABLEAU var)
+void affiche_elements_TABLEAU(TABLEAU var)
 {
 	for(int i=0; i<var.taille; i++)
 	{
@@ -262,7 +262,7 @@ int main()
 	var=init_struct_TABLEAU(var);
 	affiche_elements_TABLEAU(var);
 	prod_elem=produit_element_TABLEAU(var);
-	elem_min=element_minimum_TABLEAU(var);
+	//elem_min=element_minimum_TABLEAU(var);
 	
 	
 	exit(0);
