@@ -12,6 +12,18 @@ struct tableau
 };
 typedef struct tableau TABLEAU;
 
+typedef struct element ELEMENT;
+struct element
+{
+    int val;
+    struct element *next;
+};
+typedef element* LISTE;
+
+
+
+
+
 //FONCTIONS
 
 int alea(int n)
@@ -21,9 +33,53 @@ int alea(int n)
 
 
 
-int produit_element_TABLEAU(TABLEAU var)
+
+TABLEAU tri_TABLEAU(TABLEAU var)
 {
-	int p=1;
+	int swh;
+	for(int i=var.taille-1; i>=0; i--)
+	{
+		for(int j=0; j<i; j++)
+		{
+			if(var.tab[i]<var.tab[j])
+			{
+				swh=var.tab[i];
+				var.tab[i]=var.tab[j];
+				var.tab[j]=swh;
+			}
+				
+		}
+	}
+	return var;
+}
+
+
+
+TABLEAU decalage_de_un(TABLEAU var)
+{
+	var.taille++;
+	for(int i=var.taille-1; i>=0; i--)
+	{
+		var.tab[i+1]=var.tab[i];
+	}
+	var.tab[0]=0;
+	return var;
+}
+
+int element_minimum_TABLEAU(TABLEAU var)
+{
+	int min=var.tab[0];
+	for(int i=1; i<var.taille; i++)
+	{
+		if(var.tab[i]<min) {min=var.tab[i];}
+	}
+	return min;
+}
+
+
+long int produit_element_TABLEAU(TABLEAU var)
+{
+	long int p=1;
 	for(int i=0; i<var.taille; i++)
 	{
 		p=p*var.tab[i];
@@ -40,8 +96,9 @@ void affiche_elements_TABLEAU(TABLEAU var)
 }
 
 
-TABLEAU init_struct_TABLEAU(TABLEAU var)
+TABLEAU init_struct_TABLEAU()
 {
+	TABLEAU var;
 	var.taille=10;
 	for(int i=0; i<var.taille; i++)
 	{
@@ -255,14 +312,22 @@ int main()
 	printf("pointeur1 = %d \npointeur2 = %d \n\n",pointeur1,pointeur2);
 	
 	//structure, tableaux
-	int prod_elem;
+	long int prod_elem;
 	int elem_min;
 	printf("la taille de la structure TABLEAU est %lu octets\n\n",sizeof(TABLEAU)); 
 	TABLEAU var;
-	var=init_struct_TABLEAU(var);
+	var=init_struct_TABLEAU();
 	affiche_elements_TABLEAU(var);
 	prod_elem=produit_element_TABLEAU(var);
-	//elem_min=element_minimum_TABLEAU(var);
+	printf("\nle produit des éléments du tableau est %ld \n\n",prod_elem);
+	elem_min=element_minimum_TABLEAU(var);
+	printf("l'élément minimum du tableau est %d \n\n",elem_min);
+	var=decalage_de_un(var);
+	var=tri_TABLEAU(var);
+	affiche_elements_TABLEAU(var);
+	
+	//listes chaînées
+    
 	
 	
 	exit(0);
