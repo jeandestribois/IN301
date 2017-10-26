@@ -12,13 +12,13 @@ struct tableau
 };
 typedef struct tableau TABLEAU;
 
-typedef struct element ELEMENT;
+
 struct element
 {
     int val;
-    struct element *next;
+    struct element* suiv;
 };
-typedef element* LISTE;
+typedef struct element* LISTE;
 
 
 
@@ -26,13 +26,60 @@ typedef element* LISTE;
 
 //FONCTIONS
 
-int alea(int n)
+//listes chaînées
+
+
+
+
+
+LISTE ajoute_element_debut(LISTE L, int n)
 {
-	return rand()%(n+1);
+	LISTE Lres=creer_element(n);
+	Lres->suiv=L;
+	return Lres;
+}
+
+LISTE creer_element(int n)
+{
+	LISTE L=malloc(sizeof(struct element));
+	if(L==NULL)
+	{
+		printf("\nAllocation mémoire echouée\n");
+		exit(EXIT_FAILURE);
+	}
+	L->val=n;
+	L->suiv=NULL;
+	return L;
 }
 
 
+void afficher_liste(LISTE L)
+{
+	int indice=1;
+	while(!est_vide(L))
+	{
+		printf("\nl'élément %d de la liste est %d",indice,L->val);
+		L=L->suiv;
+		indice++;
+	}
+}
 
+LISTE libere_memoire(LISTE L)
+{
+	if(!est_vide(L))
+	{
+		L->suiv = libere_memoire(L->suiv);
+		free(L);
+	}
+	return NULL;
+}
+
+int est_vide(LISTE L)
+{
+	return L==NULL;
+}
+
+//structure, tableaux
 
 TABLEAU tri_TABLEAU(TABLEAU var)
 {
@@ -107,6 +154,8 @@ TABLEAU init_struct_TABLEAU()
 	return var;
 }
 
+//pointeurs
+
 void permute_pointeurs(int* pointeur1, int* pointeur2)
 {
 	int p;
@@ -138,6 +187,8 @@ void taille_types()
 	printf("la taille de int[10]  est de %lu octets \n",sizeof(int[10]));
 	printf("la taille de char[7][3] est de %lu octets \n\n",sizeof(int[7][3]));
 }
+
+//tableaux
 
 void decalage(int t[N])
 {
@@ -173,6 +224,8 @@ void init_tableau(int t[N])
 		t[i]=1;
 	}
 }
+
+//calculs, rappels
 
 void syracuse(int U)
 {
@@ -272,6 +325,16 @@ void etoiles(int n)
 	}
 }
 
+//pour la fonction aléa
+
+int alea(int n)
+{
+	return rand()%(n+1);
+}
+
+
+//MAIN
+
 int main()
 {
 	//pour la fonction aléa
@@ -327,8 +390,92 @@ int main()
 	affiche_elements_TABLEAU(var);
 	
 	//listes chaînées
+    LISTE L=NULL;
+    int n=3;
+    L=creer_element(n);
     
-	
+    afficher_liste(L);
 	
 	exit(0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct element
+{
+	int val;
+	struct element* suiv;
+};
+typedef struct element* Liste;
+
+
+Liste insereFin(Liste l, int n)
+{
+	Liste ltmp,l2;
+	ltmp = creerElem(n);
+	if(estVide(l))
+	{
+		return ltmp;
+	}
+	l2 = l;
+	while(!estVide(l->suiv))
+	{
+	  l = l->suiv;
+	}
+	l->suiv = ltmp;
+	return l2;
+}
+
+Liste inserTrie(Liste l, int n)
+{
+	Liste ltmp = creerElem(n);
+	if(estVide(l) || n <l->val )
+		return insereDeb(l,n);
+	l2 = l;
+	while(!estVide(l->suiv) && l->suiv->val  < n)
+	{
+		l = l->suiv;
+	}
+	ltmp = creerElem(n);
+	ltmp = l->suiv;
+       	l->suiv = ltmp;
+	return l2;	
+}
+
+int main()
+{
+	Liste l = creerListe();
+	l = creerElem(3);
+	l = insereFin(l,5);
+	affiche(l);
+	l = libere(l);
+	return 0;
+}
+
