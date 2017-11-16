@@ -28,6 +28,30 @@ typedef struct element* LISTE;
 
 //listes chaînées
 
+int est_vide(LISTE L)
+{
+    return L==NULL;
+}
+
+LISTE creer_element(int n)
+{
+    LISTE L=malloc(sizeof(struct element));
+    if(L==NULL)
+    {
+        printf("\nAllocation mémoire echouée\n");
+        exit(EXIT_FAILURE);
+    }
+    L->val=n;
+    L->suiv=NULL;
+    return L;
+}
+
+LISTE ajoute_element_debut(LISTE L, int n)
+{
+    LISTE Lres=creer_element(n);
+    Lres->suiv=L;
+    return Lres;
+}
 
 LISTE ajoute_element_trie(LISTE L, int n)
 {
@@ -64,27 +88,6 @@ LISTE ajoute_element_fin(LISTE L, int n)
     return L2;
 }
 
-LISTE ajoute_element_debut(LISTE L, int n)
-{
-	LISTE Lres=creer_element(n);
-	Lres->suiv=L;
-	return Lres;
-}
-
-LISTE creer_element(int n)
-{
-	LISTE L=malloc(sizeof(struct element));
-	if(L==NULL)
-	{
-		printf("\nAllocation mémoire echouée\n");
-		exit(EXIT_FAILURE);
-	}
-	L->val=n;
-	L->suiv=NULL;
-	return L;
-}
-
-
 void afficher_liste(LISTE L)
 {
 	int indice=1;
@@ -106,10 +109,16 @@ LISTE libere_memoire(LISTE L)
 	return NULL;
 }
 
-int est_vide(LISTE L)
+
+
+//pour la fonction aléa
+
+int alea(int n)
 {
-	return L==NULL;
+    return rand()%(n+1);
 }
+
+
 
 //structure, tableaux
 
@@ -357,22 +366,13 @@ void etoiles(int n)
 	}
 }
 
-//pour la fonction aléa
-
-int alea(int n)
-{
-	return rand()%(n+1);
-}
-
-
 //MAIN
 
 int main()
 {
 	//pour la fonction aléa
 	srand(time(NULL));
-	
-	//calculs, rappels
+    //calculs, rappels
 	int etoile=10;
 	int conv=8000;
 	int x=156;
@@ -423,10 +423,10 @@ int main()
 	
 	//listes chaînées
     LISTE L=NULL;
-    int n=3;
-    L=ajoute_element_debut(3);
-    L=ajoute_element_fin(5);
-    L=ajoute_element_trie(4);
+    int n=3, m=4, l=5;
+    L=ajoute_element_debut(L,n);
+    L=ajoute_element_fin(L,l);
+    L=ajoute_element_trie(L,m);
     afficher_liste(L);
 	libere_memoire(L);
     
