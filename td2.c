@@ -29,8 +29,40 @@ typedef struct element* LISTE;
 //listes chaînées
 
 
+LISTE ajoute_element_trie(LISTE L, int n)
+{
+    LISTE Lres, L2;
+    Lres=creer_element(n);
+    if(est_vide(L) || L->val >= n)
+    {
+        return ajoute_element_debut(L,n);
+    }
+    L2=L;
+    while(!est_vide(L->suiv) && L->suiv->val  < n)
+    {
+        L=L->suiv;
+    }
+    Lres->suiv=L->suiv;
+    L->suiv = Lres;
+    return L2;
+}
 
-
+LISTE ajoute_element_fin(LISTE L, int n)
+{
+    LISTE Lres, L2;
+    Lres=creer_element(n);
+    if(est_vide(L))
+    {
+        return Lres;
+    }
+    L2=L;
+    while(!est_vide(L->suiv))
+    {
+        L=L->suiv;
+    }
+    L->suiv=Lres;
+    return L2;
+}
 
 LISTE ajoute_element_debut(LISTE L, int n)
 {
@@ -392,90 +424,11 @@ int main()
 	//listes chaînées
     LISTE L=NULL;
     int n=3;
-    L=creer_element(n);
-    
+    L=ajoute_element_debut(3);
+    L=ajoute_element_fin(5);
+    L=ajoute_element_trie(4);
     afficher_liste(L);
-	
+	libere_memoire(L);
+    
 	exit(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-struct element
-{
-	int val;
-	struct element* suiv;
-};
-typedef struct element* Liste;
-
-
-Liste insereFin(Liste l, int n)
-{
-	Liste ltmp,l2;
-	ltmp = creerElem(n);
-	if(estVide(l))
-	{
-		return ltmp;
-	}
-	l2 = l;
-	while(!estVide(l->suiv))
-	{
-	  l = l->suiv;
-	}
-	l->suiv = ltmp;
-	return l2;
-}
-
-Liste inserTrie(Liste l, int n)
-{
-	Liste ltmp = creerElem(n);
-	if(estVide(l) || n <l->val )
-		return insereDeb(l,n);
-	l2 = l;
-	while(!estVide(l->suiv) && l->suiv->val  < n)
-	{
-		l = l->suiv;
-	}
-	ltmp = creerElem(n);
-	ltmp = l->suiv;
-       	l->suiv = ltmp;
-	return l2;	
-}
-
-int main()
-{
-	Liste l = creerListe();
-	l = creerElem(3);
-	l = insereFin(l,5);
-	affiche(l);
-	l = libere(l);
-	return 0;
-}
-
