@@ -1,18 +1,22 @@
-all: ploum
+all: ploum test clean mrproper
 
-run: ploum
+test: ploum
 	./ploum
 
-plam.o: plam.c
-	gcc -c plam.c -Wall
+ploum: ploum.o plim.o plam.o
+	gcc ploum.o plim.o plam.o -o ploum -Wall
+
+ploum.o: ploum.c plim.h plam.h
+	gcc -c ploum.c -o ploum.o -Wall
 
 plim.o: plim.c
-	gcc -c plim.c -Wall
+	gcc -c plim.c -o plim.o -Wall
 
-ploum.o: ploum.c plam.h plim.h
-	gcc -c ploum.c -Wall
+plam.o: plam.c
+	gcc -c plam.c -o plam.o -Wall
 
-ploum: plam.o plim.o ploum.o 
-	gcc *.o -Wall -o ploum
+clean:
+	rm -rf *.o
 
-
+mrproper:
+	rm -f ploum
