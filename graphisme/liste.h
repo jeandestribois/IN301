@@ -16,3 +16,5 @@ void dessineListeRec(Liste l);
 void dessineListe(Liste l);
 
 void decalepoint(Liste l, POINT p);
+
+void alignepoint(Liste l);

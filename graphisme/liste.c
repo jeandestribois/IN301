@@ -71,6 +71,19 @@ void decalepoint(Liste l, POINT p)
 	}
 }
 
+void alignepoint(Liste l)
+{
+	if(l->suiv != NULL)
+	{
+		
+		
+	}
+	
+	
+	
+}
+
+
 void dessineListeRec(Liste l){
   if(l != NULL){
     draw_fill_circle(l->p, 5, bleu);

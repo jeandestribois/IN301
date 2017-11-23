@@ -28,10 +28,15 @@ void simulChaine(){
 		l = supprimeFin(l);
 		i--;
 	}
-	else if(c==1)
+	else if(c == 1)
 	{
 		decalepoint(l,p);		
 	}
+	else if(c == t)
+	{
+		alignepoint(l);
+	}
+	
     dessineListe(l);
   }
 }
