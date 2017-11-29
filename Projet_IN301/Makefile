@@ -1,7 +1,7 @@
-NOM=PROJET_IN301
+NOM=Projet_IN301
 
 test: slider
-	./slider niveau_01.slider
+	./slider niveau_001.slider
 
 # Edition de liens
 slider: slider.o lire_ecrire.o afficher.o
@@ -25,15 +25,14 @@ editeur:
 
 # Pour creer le zip a deposer sur e-campus
 zip:
-	rm -fr $(NOM)
 	rm -f $(NOM).zip
 	mkdir $(NOM)
 	cp *.c $(NOM)
 	cp *.h $(NOM)
 	cp Makefile $(NOM)
-#	cp -f *.slider $(NOM)
+	cp -f *.slider $(NOM)
 	zip $(NOM).zip $(NOM)/*
-#	rm -fr $(NOM)
+	rm -fr $(NOM)
 
 
 
