@@ -4,7 +4,7 @@ struct elem
 {
 	int x, y, d;
 	struct elem* suiv;
-}
+};
 typedef struct elem LISTE; 
 
 struct slider

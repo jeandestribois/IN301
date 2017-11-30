@@ -21,7 +21,7 @@ afficher.o: afficher.c
 	gcc -c -Wall  `sdl-config --cflags`   afficher.c
 
 editeur:
-	geany Makefile mes_types.h slider.c afficher.c afficher.h &
+	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.c niveau_001.slider &
 
 # Pour creer le zip a deposer sur e-campus
 zip:
