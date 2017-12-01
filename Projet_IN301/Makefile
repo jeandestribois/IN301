@@ -4,26 +4,30 @@ test: slider
 	./slider niveau_001.slider
 
 # Edition de liens
-slider: slider.o lire_ecrire.o afficher.o
+
+slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o
 	gcc slider.o lire_ecrire.o afficher.o -o slider -luvsqgraphics `sdl-config --libs` -lm -lSDL_ttf
 
 # Compilation
-slider.o: slider.c mes_types.h lire_ecrire.h
+
+slider.o: slider.c mes_types.h lire_ecrire.h afficher.h fonctions_liste.h
 	gcc -c -Wall slider.c
 
-# Compilation
 lire_ecrire.o: lire_ecrire.c
 	gcc -c -Wall lire_ecrire.c
 
-# Compilation
 afficher.o: afficher.c
-#	gcc -c -Wall   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT  afficher.c
-	gcc -c -Wall  `sdl-config --cflags`   afficher.c
+	gcc -c -Wall  `sdl-config --cflags` afficher.c
+
+fonctions_liste.o: fonctions_liste.c
+	gcc -c -Wall fonctions_liste.c
+
+# Edition
 
 editeur:
-	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.c niveau_001.slider &
+	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h niveau_001.slider &
 
-# Pour creer le zip a deposer sur e-campus
+# Zip
 zip:
 	rm -f $(NOM).zip
 	mkdir $(NOM)
@@ -39,7 +43,5 @@ zip:
 clean:
 	rm -rf $(NOM)
 	rm -f $(NOM).zip
-	rm -f lire_ecrire.o
-	rm -f afficher.o
-	rm -f slider.o
+	rm -f *.o
 	rm -f slider

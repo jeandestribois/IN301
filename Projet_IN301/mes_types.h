@@ -5,7 +5,7 @@ struct elem
 	int x, y, d;
 	struct elem* suiv;
 };
-typedef struct elem LISTE; 
+typedef struct elem* LISTE; 
 
 struct slider
 {
@@ -13,6 +13,6 @@ struct slider
 	int xent, yent;
 	int xsor, ysor;
 	int N;
-	LISTE mur=NULL;
+	LISTE mur;
 };
 typedef struct slider SLIDER;

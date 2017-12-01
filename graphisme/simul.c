@@ -32,10 +32,10 @@ void simulChaine(){
 	{
 		decalepoint(l,p);		
 	}
-	else if(c == t)
+	/*else if(c == t)
 	{
 		alignepoint(l);
-	}
+	}*/
 	
     dessineListe(l);
   }
