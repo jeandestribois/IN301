@@ -6,19 +6,19 @@ test: slider
 # Edition de liens
 
 slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o
-	gcc slider.o lire_ecrire.o afficher.o -o slider -luvsqgraphics `sdl-config --libs` -lm -lSDL_ttf
+	gcc slider.o lire_ecrire.o afficher.o fonctions_liste.o -o slider -luvsqgraphics `sdl-config --libs` -lm -lSDL_ttf
 
 # Compilation
 
-slider.o: slider.c mes_types.h lire_ecrire.h afficher.h fonctions_liste.h
+slider.o: slider.c mes_types.h lire_ecrire.h afficher.h
 	gcc -c -Wall slider.c
 
 lire_ecrire.o: lire_ecrire.c
 	gcc -c -Wall lire_ecrire.c
 
-afficher.o: afficher.c
+afficher.o: afficher.c fonctions_liste.h
 	gcc -c -Wall  `sdl-config --cflags` afficher.c
-
+	
 fonctions_liste.o: fonctions_liste.c
 	gcc -c -Wall fonctions_liste.c
 
@@ -28,6 +28,7 @@ editeur:
 	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h niveau_001.slider &
 
 # Zip
+
 zip:
 	rm -f $(NOM).zip
 	mkdir $(NOM)
@@ -38,7 +39,7 @@ zip:
 	zip $(NOM).zip $(NOM)/*
 	rm -fr $(NOM)
 
-
+#Clean
 
 clean:
 	rm -rf $(NOM)

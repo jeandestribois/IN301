@@ -51,7 +51,7 @@ void afficher_liste(LISTE L)
 {
 	while(!est_vide(L))
 	{
-		printf("%d %d %d",L->x, L->y, L->d);
+		printf("%d %d %d\n",L->x, L->y, L->d);
 		L=L->suiv;
 	}
 }
