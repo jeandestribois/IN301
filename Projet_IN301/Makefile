@@ -10,13 +10,13 @@ slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o
 
 # Compilation
 
-slider.o: slider.c mes_types.h lire_ecrire.h afficher.h
+slider.o: slider.c mes_types.h lire_ecrire.h afficher.h fonctions_liste.h
 	gcc -c -Wall slider.c
 
 lire_ecrire.o: lire_ecrire.c
 	gcc -c -Wall lire_ecrire.c
 
-afficher.o: afficher.c fonctions_liste.h
+afficher.o: afficher.c
 	gcc -c -Wall  `sdl-config --cflags` afficher.c
 	
 fonctions_liste.o: fonctions_liste.c

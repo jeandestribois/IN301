@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "mes_types.h"
-#include "fonctions_liste.h"
 
 
 SLIDER lire_fichier(char *nom) 

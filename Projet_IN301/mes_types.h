@@ -1,4 +1,4 @@
-#define TAILLE_CASE 50
+#define TAILLE_CASE 100
 
 struct elem
 {

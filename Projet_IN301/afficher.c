@@ -1,31 +1,58 @@
 #include <uvsqgraphics.h>
-
 #include "mes_types.h"
 
 
 void initialiser_affichage(SLIDER S)
 {
-	init_graphics (TAILLE_CASE*S.L,TAILLE_CASE*S.H);
+	init_graphics (TAILLE_CASE*S.L+1,TAILLE_CASE*S.H+1);
 }
 
 void afficher_grille(SLIDER S)
 {
+	int i;
 	POINT P1, P2;
-	P1.y=0, P2.y=TAILLE_CASE*S.H;
-	for(int i=0; i<S.L; i++)
+	P1.y=0, P2.y=HEIGHT;
+	for(i=0; i<=S.L; i++)
 	{
 		P1.x=i*TAILLE_CASE, P2.x=P1.x;
 		draw_line(P1,P2,white);
 	}
-	P1.x=0, P2.x=TAILLE_CASE*S.L;
-	for(int i=0; i<S.H; i++)
+	P1.x=0, P2.x=WIDTH;
+	for(i=0; i<=S.H; i++)
 	{
 		P1.y=i*TAILLE_CASE, P2.y=P1.y;
 		draw_line(P1,P2,white);
 	}
 }
 
-void afficher_murs(SLIDER S) {
+void afficher_murs(SLIDER S)
+{
+	POINT P1, P2;
+	while(!est_vide(S.mur))
+	{
+		if(S.mur->d==0)
+		{
+			P1.x=S.mur->x*TAILLE_CASE, P1.y=S.mur->y*TAILLE_CASE+TAILLE_CASE-2; 
+			P2.x=P1.x+TAILLE_CASE, P2.y=P1.y+5; 
+		}
+		else if(S.mur->d==3) 
+		{
+			P1.x=S.mur->x*TAILLE_CASE+TAILLE_CASE-2, P1.y= S.mur->y*TAILLE_CASE;
+			P2.x=P1.x+5, P2.y=P1.y+TAILLE_CASE;
+		}
+		else if(S.mur->d==6)
+		{
+			P1.x=S.mur->x*TAILLE_CASE, P1.y=S.mur->y*TAILLE_CASE-2; 
+			P2.x=P1.x+TAILLE_CASE, P2.y=P1.y+5;
+		}
+		else
+		{
+			P1.x=S.mur->x*TAILLE_CASE-2, P1.y=S.mur->y*TAILLE_CASE;
+			P2.x=P1.x+5, P2.y=P1.y+TAILLE_CASE;
+		}
+		draw_fill_rectangle(P1,P2,yellow);
+		S.mur=S.mur->suiv;
+	}
 }
 
 void afficher_le_slider(SLIDER S) {
@@ -43,6 +70,7 @@ void afficher_slider (SLIDER S) {
 }
 
 
-void finir_affichage(SLIDER S) {
+void finir_affichage(SLIDER S)
+{
 	wait_escape();
 }
