@@ -1,4 +1,4 @@
-#define TAILLE_CASE 100
+#define TAILLE_CASE 50
 
 struct elem
 {
@@ -10,7 +10,7 @@ typedef struct elem* LISTE;
 struct slider
 {
 	int L,H; // Largeur et hauteur de la grille
-	int xent, yent;
+	int x, y;
 	int xsor, ysor;
 	int N;
 	LISTE mur;

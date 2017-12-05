@@ -1,6 +1,6 @@
 #include <uvsqgraphics.h>
 #include "mes_types.h"
-
+#include "fonctions_liste.h"
 
 void initialiser_affichage(SLIDER S)
 {
@@ -55,10 +55,21 @@ void afficher_murs(SLIDER S)
 	}
 }
 
-void afficher_le_slider(SLIDER S) {
+void afficher_le_slider(SLIDER S)
+{
+	int rayon=2*TAILLE_CASE/5;
+	POINT P;
+	P.x=S.x*TAILLE_CASE+(TAILLE_CASE/2);
+	P.y=S.y*TAILLE_CASE+(TAILLE_CASE/2);
+	draw_fill_circle(P,rayon,blue);
 }
 
-void afficher_sortie(SLIDER S) {
+void afficher_sortie(SLIDER S)
+{
+	POINT P1, P2;
+	P1.x=S.xsor*TAILLE_CASE+1, P1.y=S.ysor*TAILLE_CASE+1;
+	P2.x=S.xsor*TAILLE_CASE+TAILLE_CASE-1, P2.y=S.ysor*TAILLE_CASE+TAILLE_CASE-1;
+	draw_fill_rectangle(P1,P2,green);
 }
 
 

@@ -5,7 +5,7 @@ test: slider
 
 # Edition de liens
 
-slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o
+slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o jouer.o
 	gcc slider.o lire_ecrire.o afficher.o fonctions_liste.o -o slider -luvsqgraphics `sdl-config --libs` -lm -lSDL_ttf
 
 # Compilation
@@ -21,6 +21,9 @@ afficher.o: afficher.c
 	
 fonctions_liste.o: fonctions_liste.c
 	gcc -c -Wall fonctions_liste.c
+	
+jouer.o: jouer.c
+	gcc -c -Wall jouer.c
 
 # Edition
 

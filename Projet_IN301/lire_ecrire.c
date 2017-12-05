@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "mes_types.h"
-
+#include "fonctions_liste.h"
 
 SLIDER lire_fichier(char *nom) 
 {
@@ -13,8 +13,8 @@ SLIDER lire_fichier(char *nom)
 	if(fichier != NULL)
 	{
 		fscanf(fichier, "%d %d\n", &S.L, &S.H);
-		fscanf(fichier, "%d %d\n", &S.xent, &S.yent);
-		fscanf(fichier, "%d %d\n", &S.xsor, &S.yent);
+		fscanf(fichier, "%d %d\n", &S.x, &S.y);
+		fscanf(fichier, "%d %d\n", &S.xsor, &S.ysor);
 		fscanf(fichier, "%d\n", &S.N);
 		for(int i=0; i<S.N; i++)
 		{

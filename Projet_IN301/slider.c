@@ -5,6 +5,7 @@
 #include "lire_ecrire.h"
 #include "afficher.h"
 #include "fonctions_liste.h"
+#include "jouer.h"
 
 int main (int argc, char*argv[]) {
 	printf("Debut slider\n");
