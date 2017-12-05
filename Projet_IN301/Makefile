@@ -10,7 +10,7 @@ slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o jouer.o
 
 # Compilation
 
-slider.o: slider.c mes_types.h lire_ecrire.h afficher.h fonctions_liste.h
+slider.o: slider.c mes_types.h lire_ecrire.h afficher.h fonctions_liste.h jouer.h
 	gcc -c -Wall slider.c
 
 lire_ecrire.o: lire_ecrire.c
@@ -23,12 +23,12 @@ fonctions_liste.o: fonctions_liste.c
 	gcc -c -Wall fonctions_liste.c
 	
 jouer.o: jouer.c
-	gcc -c -Wall jouer.c
+	gcc -c -Wall `sdl-config --cflags` jouer.c
 
 # Edition
 
 editeur:
-	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h niveau_001.slider &
+	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h jouer.c jouer.h niveau_001.slider &
 
 # Zip
 

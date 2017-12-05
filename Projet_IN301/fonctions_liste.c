@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "mes_types.h"
 
+// ########################################
+// Fonctions pour manupuler la liste (file) de mur
+// ########################################
 
 int est_vide(LISTE L)
 {
@@ -21,13 +24,6 @@ LISTE creer_element(int x, int y, int d)
 	L->d=d;
     L->suiv=NULL;
     return L;
-}
-
-LISTE ajoute_element_debut(LISTE L, int x, int y, int d)
-{
-    LISTE Lres=creer_element(x,y,d);
-    Lres->suiv=L;
-    return Lres;
 }
 
 LISTE ajoute_element_fin(LISTE L, int x, int y, int d)
@@ -60,8 +56,31 @@ LISTE libere_memoire(LISTE L)
 {
 	if(!est_vide(L))
 	{
-		L->suiv = libere_memoire(L->suiv);
+		L->suiv=libere_memoire(L->suiv);
 		free(L);
 	}
 	return NULL;
+}
+
+// ###############################################
+// Fonctions pour manipuler la pile de coups joués
+// ###############################################
+
+/*Liste ajoute_element_pile(Liste l, POINT p)
+{
+  Liste tmp = malloc(sizeof(struct element_coup));
+  tmp->P = P;
+  tmp->suiv = l;
+  return tmp;
+}*/
+
+PILE_COUP supprime_element_pile(PILE_COUP P){
+  PILE_COUP PP;
+  if(P!=NULL)
+  {
+    PP=P;
+    P=P->suiv;
+    free(PP);
+  }
+  return P;
 }

@@ -16,3 +16,11 @@ struct slider
 	LISTE mur;
 };
 typedef struct slider SLIDER;
+
+struct element_coup
+{
+	int x,y;
+	struct element_coup* suiv;
+};
+typedef struct element_coup* PILE_COUP;
+
