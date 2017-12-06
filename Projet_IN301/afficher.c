@@ -27,25 +27,25 @@ void afficher_grille(SLIDER S)
 
 void afficher_murs(SLIDER S)
 {
-	POINT P1, P2;
+	POINT P1,P2;
 	while(!est_vide(S.mur))
 	{
-		if(S.mur->d==0)
+		if(S.mur->d==MUR_HAUT)
 		{
 			P1.x=S.mur->x*TAILLE_CASE, P1.y=S.mur->y*TAILLE_CASE+TAILLE_CASE-2; 
 			P2.x=P1.x+TAILLE_CASE, P2.y=P1.y+5; 
 		}
-		else if(S.mur->d==3) 
+		else if(S.mur->d==MUR_DROITE) 
 		{
 			P1.x=S.mur->x*TAILLE_CASE+TAILLE_CASE-2, P1.y= S.mur->y*TAILLE_CASE;
 			P2.x=P1.x+5, P2.y=P1.y+TAILLE_CASE;
 		}
-		else if(S.mur->d==6)
+		else if(S.mur->d==MUR_BAS)
 		{
 			P1.x=S.mur->x*TAILLE_CASE, P1.y=S.mur->y*TAILLE_CASE-2; 
 			P2.x=P1.x+TAILLE_CASE, P2.y=P1.y+5;
 		}
-		else
+		else if(S.mur->d==MUR_GAUCHE)
 		{
 			P1.x=S.mur->x*TAILLE_CASE-2, P1.y=S.mur->y*TAILLE_CASE;
 			P2.x=P1.x+5, P2.y=P1.y+TAILLE_CASE;

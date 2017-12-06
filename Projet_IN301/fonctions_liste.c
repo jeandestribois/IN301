@@ -66,13 +66,14 @@ LISTE libere_memoire(LISTE L)
 // Fonctions pour manipuler la pile de coups joués
 // ###############################################
 
-/*Liste ajoute_element_pile(Liste l, POINT p)
+PILE_COUP ajoute_element_pile(PILE_COUP P, int x, int y)
 {
-  Liste tmp = malloc(sizeof(struct element_coup));
-  tmp->P = P;
-  tmp->suiv = l;
+  PILE_COUP tmp = malloc(sizeof(struct element_coup));
+  tmp->x=x;
+  tmp->y=y;
+  tmp->suiv=P;
   return tmp;
-}*/
+}
 
 PILE_COUP supprime_element_pile(PILE_COUP P){
   PILE_COUP PP;

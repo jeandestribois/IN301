@@ -8,4 +8,6 @@ void afficher_liste(LISTE L);
 
 LISTE libere_memoire(LISTE L);
 
-PILE_COUP supprime_element_pile(PILE_COUP p);
+PILE_COUP supprime_element_pile(PILE_COUP P);
+
+PILE_COUP ajoute_element_pile(PILE_COUP P, int x, int y);

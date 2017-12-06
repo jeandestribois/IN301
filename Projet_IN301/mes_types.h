@@ -1,5 +1,10 @@
 #define TAILLE_CASE 50
 
+#define MUR_HAUT 0
+#define MUR_DROITE 3
+#define MUR_BAS 6
+#define MUR_GAUCHE 9
+
 struct elem
 {
 	int x, y, d;
