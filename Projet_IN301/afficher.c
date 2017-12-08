@@ -55,6 +55,15 @@ void afficher_murs(SLIDER S)
 	}
 }
 
+void effacer_le_slider(SLIDER S)
+{
+	int rayon=2*TAILLE_CASE/5;
+	POINT P;
+	P.x=S.x*TAILLE_CASE+(TAILLE_CASE/2);
+	P.y=S.y*TAILLE_CASE+(TAILLE_CASE/2);
+	draw_fill_circle(P,rayon,black);
+}
+
 void afficher_le_slider(SLIDER S)
 {
 	int rayon=2*TAILLE_CASE/5;
@@ -73,11 +82,12 @@ void afficher_sortie(SLIDER S)
 }
 
 
-void afficher_slider (SLIDER S) {
+void afficher_jeu(SLIDER S)
+{
 	afficher_grille(S);
-	afficher_murs(S);
 	afficher_le_slider(S);
 	afficher_sortie(S);
+	afficher_murs(S);
 }
 
 

@@ -76,9 +76,9 @@ PILE_COUP ajoute_element_pile(PILE_COUP P, int x, int y)
 }
 
 PILE_COUP supprime_element_pile(PILE_COUP P){
-  PILE_COUP PP;
   if(P!=NULL)
   {
+	PILE_COUP PP;
     PP=P;
     P=P->suiv;
     free(PP);

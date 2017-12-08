@@ -13,10 +13,7 @@ int main (int argc, char*argv[]) {
 	SLIDER S;
 	S = lire_fichier(argv[1]);
 	
-	initialiser_affichage(S);
-	
-	afficher_slider(S);
-
+	joue(S);
 
 	printf("Fin slider\n");
 	
