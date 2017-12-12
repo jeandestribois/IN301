@@ -1,7 +1,7 @@
 NOM=Projet_IN301
 
 test: slider
-	./slider niveau_001.slider
+#	./slider niveau_001.slider
 
 # Edition de liens
 
