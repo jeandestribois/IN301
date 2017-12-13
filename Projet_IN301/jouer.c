@@ -104,7 +104,7 @@ void joue(SLIDER S)
 	int a;
 	char key;
 	int arrow, last_arrow;
-	last_arrow=1;	//initialisation à 1 car arrow ne prendra jamais la valeur 1
+	last_arrow=1;	//Initialisation à 1 car arrow ne prendra jamais la valeur 1
 	POINT clic;
 	
 	initialiser_affichage(S);
@@ -124,7 +124,7 @@ void joue(SLIDER S)
 	
 				afficher_le_slider(S);
 				
-				last_arrow=1;	//on laisse au joueur la possibilité de faire la même touche car il a effectué un undo
+				last_arrow=1;	//On laisse au joueur la possibilité de faire la même touche car il a effectué un undo
 			}
 			else if(a==EST_FLECHE && arrow!=last_arrow)
 			{
@@ -139,14 +139,4 @@ void joue(SLIDER S)
 			}
 		}
 	}
-	POINT P1,P2,P3,P4;
-	P1.x=WIDTH/2, P1.y=HEIGHT/2+50;
-	P2.x=WIDTH/2, P2.y=HEIGHT/2;
-	P3.x=WIDTH/2, P3.y=HEIGHT/2-50;
-	P4.x=WIDTH/2, P4.y=HEIGHT/2-100;
-	aff_pol_centre("Tu as gagne gros con,",30,P1,pink);
-	aff_pol_centre("on est pas des pd nous,",30,P2,pink);
-	aff_pol_centre("on aime juste la forme",30,P3,pink);
-	aff_pol_centre("du sexe masculin",30,P4,pink);
-	
 }
