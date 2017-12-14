@@ -8,31 +8,22 @@
 #include "fonctions_liste.h"
 #include "jouer.h"
 
-int main (int argc, char*argv[])
+int main(int argc, char*argv[])
 {	
-	printf("Debut slider\n");
+	if(!strcmp(argv[1],"dir_slider")) // Vérifie que la commande tapé sur le terminal est dir_slider
+	{
+		jouer_tout_dossier();
+	}
 	
-	if(!strcmp(argv[1],"dir_slider"))
+	else if(!strcmp(argv[1],"-c")) // Vérifie que la commande tapé sur le terminal est -c
 	{
-		char nom[100];
-		FILE *fichier;
-		fichier=NULL;
-		fichier=fopen("dir_slider/dir_slider.slider","r");
-		if(fichier!=NULL)
-		{
-			while(fscanf(fichier,"%s\n",nom) != EOF) joue(lire_fichier(nom));
-		}
 		
-		fclose(fichier);	
 	}
-	else
+	
+	else // Pour jouer à un niveau donné en ligne de commande
 	{
-		SLIDER S;
-		S=lire_fichier(argv[1]);
-		joue(S);
+		jouer_un_niveau(lire_fichier(argv[1]));
 	}
-
-	printf("Fin slider\n");
 	
 	finir_affichage();
 	exit(0);

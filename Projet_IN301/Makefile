@@ -28,7 +28,7 @@ jouer.o: jouer.c
 # Edition
 
 editeur:
-	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h jouer.c jouer.h niveau_001.slider &
+	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h jouer.c jouer.h &
 
 # Zip
 
@@ -38,7 +38,7 @@ zip:
 	cp *.c $(NOM)
 	cp *.h $(NOM)
 	cp Makefile $(NOM)
-	cp -f *.slider $(NOM)
+	cp -r dir_slider/ $(NOM)
 	zip $(NOM).zip $(NOM)/*
 	rm -fr $(NOM)
 

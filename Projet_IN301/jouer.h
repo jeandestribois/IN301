@@ -12,4 +12,4 @@ void est_touche(char key, SLIDER* S, PILE_COUP coup);
 
 int gagne(SLIDER S);
 
-void joue(SLIDER S);
+void jouer_un_niveau(SLIDER S);

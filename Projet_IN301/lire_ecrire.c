@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "mes_types.h"
 #include "fonctions_liste.h"
+#include "jouer.h"
 
 SLIDER lire_fichier(char *nom)
 {
@@ -30,6 +32,24 @@ SLIDER lire_fichier(char *nom)
 	else
 	{
 		fprintf(stderr,"Impossible d'ouvrir le fichier '%s'\n",nom);
+		exit(-1);
+	}
+}
+
+void jouer_tout_dossier()
+{
+	char nom[100];
+	FILE *fichier;
+	fichier=NULL;
+	fichier=fopen("dir_slider/dir_slider.slider","r");
+	if(fichier!=NULL)
+	{
+		while(fscanf(fichier,"%s\n",nom) != EOF) jouer_un_niveau(lire_fichier(nom));
+		fclose(fichier);
+	}
+	else
+	{
+		fprintf(stderr,"Impossible d'ouvrir le fichier dir_slider.slider\n");
 		exit(-1);
 	}
 }

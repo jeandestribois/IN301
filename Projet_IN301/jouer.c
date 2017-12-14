@@ -98,7 +98,7 @@ int gagne(SLIDER S)
 	return (S.x==S.xsor && S.y==S.ysor);
 }
 
-void joue(SLIDER S)
+void jouer_un_niveau(SLIDER S)
 {
 	PILE_COUP coup=NULL;
 	int a;
@@ -109,6 +109,8 @@ void joue(SLIDER S)
 	
 	initialiser_affichage(S);
 	afficher_jeu(S);
+	
+	printf("Debut slider\n");
 	
 	while(!gagne(S))
 	{
@@ -139,4 +141,6 @@ void joue(SLIDER S)
 			}
 		}
 	}
+	
+	printf("Fin slider\n");
 }
