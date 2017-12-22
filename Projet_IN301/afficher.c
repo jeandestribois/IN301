@@ -4,7 +4,7 @@
 
 void initialiser_affichage(SLIDER S)
 {
-	init_graphics (TAILLE_CASE*S.L+1,TAILLE_CASE*S.H+1);
+	init_graphics (TAILLE_CASE*S.L+1,TAILLE_CASE*S.H+1); // On rajoute 1 pour faire apparaitre les dernieres lignes de la grille
 }
 
 void afficher_grille(SLIDER S)

@@ -5,12 +5,12 @@ test: slider
 
 # Edition de liens
 
-slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o jouer.o
-	gcc slider.o lire_ecrire.o afficher.o fonctions_liste.o jouer.o -o slider -luvsqgraphics `sdl-config --libs` -lm -lSDL_ttf
+slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o jouer.o creer.o
+	gcc slider.o lire_ecrire.o afficher.o fonctions_liste.o jouer.o creer.o -o slider -luvsqgraphics `sdl-config --libs` -lm -lSDL_ttf
 
 # Compilation
 
-slider.o: slider.c mes_types.h lire_ecrire.h afficher.h fonctions_liste.h jouer.h
+slider.o: slider.c mes_types.h lire_ecrire.h afficher.h fonctions_liste.h jouer.h creer.h
 	gcc -c -Wall slider.c
 
 lire_ecrire.o: lire_ecrire.c
@@ -25,10 +25,13 @@ fonctions_liste.o: fonctions_liste.c
 jouer.o: jouer.c
 	gcc -c -Wall `sdl-config --cflags` jouer.c
 
+creer.o: creer.c
+	gcc -c -Wall `sdl-config --cflags` creer.c
+
 # Edition
 
 editeur:
-	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h jouer.c jouer.h &
+	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h jouer.c jouer.h crerr.c creer.h &
 
 # Zip
 
