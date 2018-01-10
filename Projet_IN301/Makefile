@@ -1,8 +1,5 @@
 NOM=Projet_IN301
 
-test: slider
-#	./slider niveau_001.slider
-
 # Edition de liens
 
 slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o jouer.o creer.o
@@ -11,7 +8,7 @@ slider: slider.o lire_ecrire.o afficher.o fonctions_liste.o jouer.o creer.o
 # Compilation
 
 slider.o: slider.c mes_types.h lire_ecrire.h afficher.h fonctions_liste.h jouer.h creer.h
-	gcc -c -Wall slider.c
+	gcc -c -Wall `sdl-config --cflags` slider.c
 
 lire_ecrire.o: lire_ecrire.c
 	gcc -c -Wall lire_ecrire.c
@@ -31,7 +28,7 @@ creer.o: creer.c
 # Edition
 
 editeur:
-	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h jouer.c jouer.h crerr.c creer.h &
+	geany Makefile mes_types.h slider.c afficher.c afficher.h lire_ecrire.c lire_ecrire.h fonctions_liste.c fonctions_liste.h jouer.c jouer.h creer.c creer.h &
 
 # Zip
 

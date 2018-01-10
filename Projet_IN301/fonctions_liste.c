@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include "mes_types.h"
 
-// ########################################
+// ###############################################
 // Fonctions pour manupuler la liste (file) de mur
-// ########################################
+// ###############################################
 
 int est_vide(LISTE L)
 {
@@ -43,20 +43,11 @@ LISTE ajoute_element_fin(LISTE L, int x, int y, int d)
     return L2;
 }
 
-void afficher_liste(LISTE L)
-{
-	while(!est_vide(L))
-	{
-		printf("%d %d %d\n",L->x, L->y, L->d);
-		L=L->suiv;
-	}
-}
-
-LISTE libere_memoire(LISTE L)
+LISTE libere_memoire_liste(LISTE L)
 {
 	if(!est_vide(L))
 	{
-		L->suiv=libere_memoire(L->suiv);
+		L->suiv=libere_memoire_liste(L->suiv);
 		free(L);
 	}
 	return NULL;
@@ -84,4 +75,14 @@ PILE_COUP supprime_element_pile(PILE_COUP P){
     free(PP);
   }
   return P;
+}
+
+PILE_COUP libere_memoire_pile(PILE_COUP P)
+{
+	if(P!=NULL)
+	{
+		P->suiv=libere_memoire_pile(P->suiv);
+		free(P);
+	}
+	return NULL;
 }

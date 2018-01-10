@@ -3,6 +3,13 @@
 #include "fonctions_liste.h"
 #include "afficher.h"
 
+// Pour chaque déplacement on vérifie :
+// -si il y a un mur
+// -si le mur est bien orienté par rapport au mouvement du slider
+// -de quel coté de la case se trouve le mur
+// Si plusieurs murs se trouvent sur la même ligne ou colone, on utilise l'entier x-compare ou
+// y_compare pour savoir lequel se trouve le plus prêt du slider
+
 SLIDER deplace_a_gauche(SLIDER S)
 {
 	int x_compare=0;
@@ -73,7 +80,7 @@ SLIDER deplace_en_haut(SLIDER S)
 
 SLIDER est_fleche(int arrow, SLIDER S, PILE_COUP coup)
 {
-	if(arrow==FLECHE_HAUT) S=deplace_en_haut(S);
+	if(arrow==FLECHE_HAUT) S=deplace_en_haut(S);	// On regarde si la flèche tapé est haut, bas, gauche ou droite
 	else if(arrow==FLECHE_BAS) S=deplace_en_bas(S);
 	else if(arrow==FLECHE_DROITE) S=deplace_a_droite(S);
 	else S=deplace_a_gauche(S);
@@ -82,20 +89,17 @@ SLIDER est_fleche(int arrow, SLIDER S, PILE_COUP coup)
 
 SLIDER est_touche(char key, SLIDER S, PILE_COUP coup)
 {
-	if(key=='U')
+	if(coup!=NULL)
 	{
-		if(coup!=NULL)
-		{
-			S.x=coup->x;
-			S.y=coup->y;
-		}
-	 }
-	 return S;
+		S.x=coup->x;	// Le slider prend alors la dernière position joué
+		S.y=coup->y;
+	}
+	return S;
 }
 
 int gagne(SLIDER S)
 {
-	return (S.x==S.xsor && S.y==S.ysor);
+	return (S.x==S.xsor && S.y==S.ysor);	// Vérifie que le Slider se trouve sur la sortie ou pas 
 }
 
 void jouer_un_niveau(SLIDER S)
@@ -104,7 +108,7 @@ void jouer_un_niveau(SLIDER S)
 	int a;
 	char key;
 	int arrow, last_arrow;
-	last_arrow=1;	//Initialisation à 1 car arrow ne prendra jamais la valeur 1
+	last_arrow=1;	// Initialisation à 1 car arrow ne prendra jamais la valeur 1
 	POINT clic;
 	
 	initialiser_affichage(S);
@@ -115,9 +119,9 @@ void jouer_un_niveau(SLIDER S)
 	while(!gagne(S))
 	{
 		a=wait_key_arrow_clic(&key,&arrow,&clic);
-		if(a!=EST_RIEN && a!=EST_CLIC)
+		if(a!=EST_RIEN && a!=EST_CLIC)	// Si le joueur a cliqué ou n'a rien fait, on n'entre pas
 		{
-			if(a==EST_TOUCHE)
+			if(a==EST_TOUCHE && key=='U')	// La seule touche possible est U pour le undo
 			{
 				effacer_le_slider(S);
 				
@@ -126,7 +130,7 @@ void jouer_un_niveau(SLIDER S)
 	
 				afficher_le_slider(S);
 				
-				last_arrow=1;	//On laisse au joueur la possibilité de faire la même touche car il a effectué un undo
+				last_arrow=1;	// On laisse au joueur la possibilité de faire la même touche car il a effectué un undo
 			}
 			else if(a==EST_FLECHE && arrow!=last_arrow)
 			{
@@ -141,6 +145,7 @@ void jouer_un_niveau(SLIDER S)
 			}
 		}
 	}
-	
+	libere_memoire_liste(S.mur);	// On libère la mémoire des deux listes chaînées
+	libere_memoire_pile(coup);
 	printf("Fin slider\n");
 }

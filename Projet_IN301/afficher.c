@@ -4,7 +4,7 @@
 
 void initialiser_affichage(SLIDER S)
 {
-	init_graphics (TAILLE_CASE*S.L+1,TAILLE_CASE*S.H+1); // On rajoute 1 pour faire apparaitre les dernieres lignes de la grille
+	init_graphics (TAILLE_CASE*S.L+1,TAILLE_CASE*S.H+1); // On rajoute 1 pour faire apparaitre la derniere ligne/colonne de la grille
 }
 
 void afficher_grille(SLIDER S)
@@ -27,12 +27,15 @@ void afficher_grille(SLIDER S)
 
 void afficher_murs(SLIDER S)
 {
+	// On diminue 2 pixel d'un côté et on rajoute 5 pixel 
+	// de l'autre pour avoir un mur avec un peu de largeur
+	
 	POINT P1,P2;
 	while(!est_vide(S.mur))
 	{
 		if(S.mur->d==MUR_HAUT)
 		{
-			P1.x=S.mur->x*TAILLE_CASE, P1.y=S.mur->y*TAILLE_CASE+TAILLE_CASE-2; 
+			P1.x=S.mur->x*TAILLE_CASE, P1.y=S.mur->y*TAILLE_CASE+TAILLE_CASE-2;
 			P2.x=P1.x+TAILLE_CASE, P2.y=P1.y+5; 
 		}
 		else if(S.mur->d==MUR_DROITE) 
@@ -90,8 +93,73 @@ void afficher_jeu(SLIDER S)
 	afficher_murs(S);
 }
 
-
-void finir_affichage()
+void afficher_instruction()
 {
-	wait_escape();
+	int t=13;
+	POINT P;
+	P.x=WIDTH/2, P.y=7*HEIGHT/8;
+	aff_pol_centre("Bienvenue dans le mode editeur",t,P,beige);
+	P.y=6*HEIGHT/8;
+	aff_pol_centre("Cliquez sur une case pour creer la case de depart",t,P,beige);
+	P.y=5*HEIGHT/8;
+	aff_pol_centre("Cliquez ensuite sur une autre pour creer la case de sortie",t,P,beige);
+	P.y=4*HEIGHT/8;
+	aff_pol_centre("Le reste des cliques vous permettront de creer des murs",t,P,beige);
+	P.y=3*HEIGHT/8;
+	aff_pol_centre("Vous pouvez annuler une action en appuyant sur la touche U",t,P,beige);
+	P.y=2*HEIGHT/8;
+	aff_pol_centre("Appuyez sur la touche F pour quitter et enregistrer a tout moment",t,P,beige);
+	P.y=1*HEIGHT/8;
+	aff_pol_centre("Appuyez sur une touche ou cliquez pour commencer",t,P,beige);
 }
+
+void finir_affichage(int i)
+{
+	if(i==1)	// En mode un seul niveau
+	{
+		POINT P;
+		P.x=WIDTH/2, P.y=HEIGHT/2;
+		aff_pol_centre("Bravo, vous avez reussi ce niveau",20,P,jaune);
+		wait_escape();
+	}
+	if(i==2)	// En mode tout les niveaux
+	{
+		POINT P;
+		P.x=WIDTH/2, P.y=HEIGHT/2;
+		aff_pol_centre("Bravo, vous avez reussi tout les niveaux",20,P,jaune);
+		wait_escape();
+	}
+	if(i==3)	// En mode création d'un niveau
+	{
+		POINT P;
+		P.x=WIDTH/2, P.y=HEIGHT/2;
+		aff_pol_centre("Bravo, vous avez cree un nouveau niveau",20,P,jaune);
+		wait_escape();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

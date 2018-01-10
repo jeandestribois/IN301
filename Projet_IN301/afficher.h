@@ -12,4 +12,6 @@ void afficher_sortie(SLIDER S);
 
 void afficher_jeu(SLIDER S);
 
+void afficher_instruction();
+
 void finir_affichage();
