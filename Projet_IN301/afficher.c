@@ -31,7 +31,7 @@ void afficher_murs(SLIDER S)
 	// de l'autre pour avoir un mur avec un peu de largeur
 	
 	POINT P1,P2;
-	while(!est_vide(S.mur))
+	while(S.mur!=NULL)
 	{
 		if(S.mur->d==MUR_HAUT)
 		{
@@ -58,38 +58,29 @@ void afficher_murs(SLIDER S)
 	}
 }
 
-void effacer_le_slider(SLIDER S)
+void afficher_effacer_le_slider(SLIDER S, COULEUR c)
 {
 	int rayon=2*TAILLE_CASE/5;
 	POINT P;
 	P.x=S.x*TAILLE_CASE+(TAILLE_CASE/2);
 	P.y=S.y*TAILLE_CASE+(TAILLE_CASE/2);
-	draw_fill_circle(P,rayon,black);
+	draw_fill_circle(P,rayon,c);
 }
 
-void afficher_le_slider(SLIDER S)
-{
-	int rayon=2*TAILLE_CASE/5;
-	POINT P;
-	P.x=S.x*TAILLE_CASE+(TAILLE_CASE/2);
-	P.y=S.y*TAILLE_CASE+(TAILLE_CASE/2);
-	draw_fill_circle(P,rayon,blue);
-}
-
-void afficher_sortie(SLIDER S)
+void afficher_effacer_sortie(SLIDER S,COULEUR c)
 {
 	POINT P1, P2;
 	P1.x=S.xsor*TAILLE_CASE+1, P1.y=S.ysor*TAILLE_CASE+1;
 	P2.x=S.xsor*TAILLE_CASE+TAILLE_CASE-1, P2.y=S.ysor*TAILLE_CASE+TAILLE_CASE-1;
-	draw_fill_rectangle(P1,P2,green);
+	draw_fill_rectangle(P1,P2,c);
 }
 
 
 void afficher_jeu(SLIDER S)
 {
 	afficher_grille(S);
-	afficher_le_slider(S);
-	afficher_sortie(S);
+	afficher_effacer_le_slider(S,bleu);
+	afficher_effacer_sortie(S,vert);
 	afficher_murs(S);
 }
 
@@ -97,19 +88,21 @@ void afficher_instruction()
 {
 	int t=13;
 	POINT P;
-	P.x=WIDTH/2, P.y=7*HEIGHT/8;
+	P.x=WIDTH/2, P.y=8*HEIGHT/9;
 	aff_pol_centre("Bienvenue dans le mode editeur",t,P,beige);
-	P.y=6*HEIGHT/8;
+	P.y=7*HEIGHT/9;
 	aff_pol_centre("Cliquez sur une case pour creer la case de depart",t,P,beige);
-	P.y=5*HEIGHT/8;
+	P.y=6*HEIGHT/9;
 	aff_pol_centre("Cliquez ensuite sur une autre pour creer la case de sortie",t,P,beige);
-	P.y=4*HEIGHT/8;
+	P.y=5*HEIGHT/9;
 	aff_pol_centre("Le reste des cliques vous permettront de creer des murs",t,P,beige);
-	P.y=3*HEIGHT/8;
+	P.y=4*HEIGHT/9;
 	aff_pol_centre("Vous pouvez annuler une action en appuyant sur la touche U",t,P,beige);
-	P.y=2*HEIGHT/8;
-	aff_pol_centre("Appuyez sur la touche F pour quitter et enregistrer a tout moment",t,P,beige);
-	P.y=1*HEIGHT/8;
+	P.y=3*HEIGHT/9;
+	aff_pol_centre("Appuyez sur la touche ESCAPE pour quitter sans enregistrer",t,P,beige);
+	P.y=2*HEIGHT/9;
+	aff_pol_centre("Appuyez sur la touche F pour quitter et enregistrer",t,P,beige);
+	P.y=1*HEIGHT/9;
 	aff_pol_centre("Appuyez sur une touche ou cliquez pour commencer",t,P,beige);
 }
 
@@ -119,21 +112,21 @@ void finir_affichage(int i)
 	{
 		POINT P;
 		P.x=WIDTH/2, P.y=HEIGHT/2;
-		aff_pol_centre("Bravo, vous avez reussi ce niveau",20,P,jaune);
+		aff_pol_centre("Bravo, vous avez reussi ce niveau",20,P,rouge);
 		wait_escape();
 	}
 	if(i==2)	// En mode tout les niveaux
 	{
 		POINT P;
 		P.x=WIDTH/2, P.y=HEIGHT/2;
-		aff_pol_centre("Bravo, vous avez reussi tout les niveaux",20,P,jaune);
+		aff_pol_centre("Bravo, vous avez reussi tout les niveaux",20,P,rouge);
 		wait_escape();
 	}
 	if(i==3)	// En mode création d'un niveau
 	{
 		POINT P;
 		P.x=WIDTH/2, P.y=HEIGHT/2;
-		aff_pol_centre("Bravo, vous avez cree un nouveau niveau",20,P,jaune);
+		aff_pol_centre("Bravo, vous avez cree un nouveau niveau",20,P,rouge);
 		wait_escape();
 	}
 }

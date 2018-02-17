@@ -1,4 +1,6 @@
-NOM=Projet_IN301
+NOM=DESTRIBOIS
+
+test: slider
 
 # Edition de liens
 
@@ -39,6 +41,9 @@ zip:
 	cp *.h $(NOM)
 	cp Makefile $(NOM)
 	cp -r dir_slider/ $(NOM)
+	cp dir_slider/*.slider $(NOM)/dir_slider
+	zip $(NOM)/dir_slider.zip dir_slider/*
+	rm -rf $(NOM)/dir_slider/
 	zip $(NOM).zip $(NOM)/*
 	rm -fr $(NOM)
 

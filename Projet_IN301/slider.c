@@ -13,7 +13,7 @@
 
 
 
-int est_entier(char* s)
+int est_entier(char* s)		// Vérifie que la chaîne de caractère s est un entier
 {
 	int i=0;
 	if(!isdigit(s[i])) return 0;
@@ -55,15 +55,15 @@ int main(int argc, char** argv)
 {	
 	verification_arguments(argc,argv);
 	
-	if(!strcmp(argv[1],"dir_slider")) // Vérifie que la commande tapé sur le terminal est dir_slider
+	if(!strcmp(argv[1],"dir_slider")) // Pour jouer tout les niveaux
 	{
 		jouer_tout_dossier();
 		finir_affichage(2);
 	}
 	
-	else if(!strcmp(argv[1],"-c")) // Vérifie que la commande tapé sur le terminal est -c
+	else if(!strcmp(argv[1],"-c")) // Pour éditer un niveau
 	{
-		SLIDER S=creer_niveau(argv[2],argv[3]);
+		ecrire_fichier(creer_niveau(argv[2],argv[3]),argv[4]);
 		finir_affichage(3);
 	}
 	

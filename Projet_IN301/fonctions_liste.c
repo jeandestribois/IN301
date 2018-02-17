@@ -3,21 +3,16 @@
 #include "mes_types.h"
 
 // ###############################################
-// Fonctions pour manupuler la liste (file) de mur
+// Fonctions pour manupuler la liste de mur
 // ###############################################
 
-int est_vide(LISTE L)
-{
-    return L==NULL;
-}
-
-LISTE creer_element(int x, int y, int d)
+LISTE creer_element_liste(int x, int y, int d)
 {
     LISTE L=malloc(sizeof(struct elem));
     if(L==NULL)
     {
-        printf("\nAllocation mémoire echouée\n");
-        exit(EXIT_FAILURE);
+        fprintf(stderr,"Allocation memoire echouee\n");
+        exit(0);
     }
     L->x=x;
     L->y=y;
@@ -26,26 +21,29 @@ LISTE creer_element(int x, int y, int d)
     return L;
 }
 
-LISTE ajoute_element_fin(LISTE L, int x, int y, int d)
+LISTE ajoute_element_debut_liste(LISTE L, int x, int y, int d)
 {
-    LISTE Lres, L2;
-    Lres=creer_element(x,y,d);
-    if(est_vide(L))
-    {
-        return Lres;
-    }
-    L2=L;
-    while(!est_vide(L->suiv))
-    {
-        L=L->suiv;
-    }
-    L->suiv=Lres;
-    return L2;
+    LISTE Lres;
+    Lres=creer_element_liste(x,y,d);
+    Lres->suiv=L;
+    return Lres;
+}
+
+LISTE supprime_element_debut_liste(LISTE L)
+{
+	if(L!=NULL)
+	{
+		LISTE LL;
+		LL=L;
+		L=L->suiv;
+		free(LL);
+	}
+	return L;
 }
 
 LISTE libere_memoire_liste(LISTE L)
 {
-	if(!est_vide(L))
+	if(L!=NULL)
 	{
 		L->suiv=libere_memoire_liste(L->suiv);
 		free(L);
@@ -57,24 +55,38 @@ LISTE libere_memoire_liste(LISTE L)
 // Fonctions pour manipuler la pile de coups joués
 // ###############################################
 
-PILE_COUP ajoute_element_pile(PILE_COUP P, int x, int y)
+PILE_COUP creer_elemen_pile(int x, int y)
 {
-  PILE_COUP tmp = malloc(sizeof(struct element_coup));
-  tmp->x=x;
-  tmp->y=y;
-  tmp->suiv=P;
-  return tmp;
+	PILE_COUP P=malloc(sizeof(struct element_coup));
+	if(P==NULL)
+	{
+		fprintf(stderr,"Allocation memoire echouee\n");
+		exit(0);
+	}
+	P->x=x;
+	P->y=y;
+	P->suiv=NULL;
+	return P;
 }
 
-PILE_COUP supprime_element_pile(PILE_COUP P){
-  if(P!=NULL)
-  {
-	PILE_COUP PP;
-    PP=P;
-    P=P->suiv;
-    free(PP);
-  }
-  return P;
+PILE_COUP ajoute_element_debut_pile(PILE_COUP P, int x, int y)
+{
+	PILE_COUP Pres;
+	Pres=creer_elemen_pile(x,y);
+	Pres->suiv=P;
+	return Pres;
+}
+
+PILE_COUP supprime_element_debut_pile(PILE_COUP P)
+{
+	if(P!=NULL)
+	{
+		PILE_COUP PP;
+		PP=P;
+		P=P->suiv;
+		free(PP);
+	}
+	return P;
 }
 
 PILE_COUP libere_memoire_pile(PILE_COUP P)

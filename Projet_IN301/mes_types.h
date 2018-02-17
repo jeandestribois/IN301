@@ -5,16 +5,16 @@
 #define MUR_BAS 6
 #define MUR_GAUCHE 9
 
-struct elem
+struct elem			// Liste chaînée contenant les informations de tout les murs
 {
 	int x, y, d;
 	struct elem* suiv;
 };
 typedef struct elem* LISTE; 
 
-struct slider
+struct slider		// Structure contenant toute les informations d'un niveau
 {
-	int L,H; // Largeur et hauteur de la grille
+	int L,H;
 	int x, y;
 	int xsor, ysor;
 	int N;
@@ -22,7 +22,7 @@ struct slider
 };
 typedef struct slider SLIDER;
 
-struct element_coup
+struct element_coup		// Liste chainée contenant les coup joués par l'utilisateur
 {
 	int x,y;
 	struct element_coup* suiv;

@@ -118,34 +118,37 @@ void jouer_un_niveau(SLIDER S)
 	
 	while(!gagne(S))
 	{
+		affiche_auto_off();
 		a=wait_key_arrow_clic(&key,&arrow,&clic);
 		if(a!=EST_RIEN && a!=EST_CLIC)	// Si le joueur a cliqué ou n'a rien fait, on n'entre pas
 		{
 			if(a==EST_TOUCHE && key=='U')	// La seule touche possible est U pour le undo
 			{
-				effacer_le_slider(S);
+				afficher_effacer_le_slider(S,noir);
 				
 				S=est_touche(key,S,coup);
-				coup=supprime_element_pile(coup);
+				coup=supprime_element_debut_pile(coup);
 	
-				afficher_le_slider(S);
+				afficher_effacer_le_slider(S,bleu);
 				
 				last_arrow=1;	// On laisse au joueur la possibilité de faire la même touche car il a effectué un undo
 			}
 			else if(a==EST_FLECHE && arrow!=last_arrow)
 			{
-				effacer_le_slider(S);
+				afficher_effacer_le_slider(S,noir);
 				
-				coup=ajoute_element_pile(coup,S.x,S.y);
+				coup=ajoute_element_debut_pile(coup,S.x,S.y);
 				S=est_fleche(arrow,S,coup);
 				
-				afficher_le_slider(S);
-				
+				afficher_effacer_le_slider(S,bleu);
+			
 				last_arrow=arrow;
 			}
 		}
+		affiche_all();
 	}
-	libere_memoire_liste(S.mur);	// On libère la mémoire des deux listes chaînées
-	libere_memoire_pile(coup);
+	affiche_auto_on();
+	S.mur=libere_memoire_liste(S.mur);	// On libère la mémoire des deux listes chaînées
+	coup=libere_memoire_pile(coup);
 	printf("Fin slider\n");
 }
